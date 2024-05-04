@@ -1,1 +1,2 @@
 org.bobpark.core.configure.BobCoreAutoConfiguration
+org.bobpark.core.configure.jpa.JpaAutoConfiguration

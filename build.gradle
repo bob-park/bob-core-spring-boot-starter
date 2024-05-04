@@ -4,23 +4,55 @@ plugins {
 }
 
 group = 'org.bobpark'
-version = '0.0.2'
+version = '0.0.3'
 sourceCompatibility = '17'
 
 repositories {
     mavenCentral()
 }
 
+ext {
+    lombokVersion = '1.18.32'
+    queryDslVersion = '5.0.0'
+
+    springBootParentVersion = '3.2.5'
+    springSecurityVersion = "6.2.4"
+
+}
+
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web:3.0.6'
-    implementation 'org.springframework.boot:spring-boot-starter-web:3.0.6'
-    implementation 'org.springframework.security:spring-security-core:6.0.2'
+    implementation "org.springframework.boot:spring-boot-starter-web:${springBootParentVersion}"
+    implementation "org.springframework.security:spring-security-core:${springSecurityVersion}"
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor:${springSecurityVersion}"
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:3.0.6'
+    // spring data jpa
+    implementation "org.springframework.data:spring-data-jpa:${springBootParentVersion}"
 
-    compileOnly 'org.projectlombok:lombok:1.18.24'
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor:3.0.6'
-    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootParentVersion}"
+
+
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    // apache common
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'commons-io:commons-io:2.11.0'
+
+    // guava
+    implementation 'com.google.guava:guava:31.1-jre'
+
+    // hibernate
+    implementation 'org.hibernate.orm:hibernate-core:6.2.13.Final'
+
+    // querydsl
+    annotationProcessor 'jakarta.persistence:jakarta.persistence-api:3.1.0'
+    annotationProcessor 'jakarta.annotation:jakarta.annotation-api:2.1.1'
+
+    implementation("com.querydsl:querydsl-jpa:${queryDslVersion}:jakarta")
+    annotationProcessor("com.querydsl:querydsl-apt:${queryDslVersion}:jakarta")
+    testAnnotationProcessor("com.querydsl:querydsl-apt:${queryDslVersion}:jakarta")
 
 }
 
